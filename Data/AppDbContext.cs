@@ -8,11 +8,11 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-    public DbSet<Eventos_db> Events { get; set; }
+    public DbSet<amon_db> Events { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Eventos_db>(entity =>
+        modelBuilder.Entity<amon_db>(entity =>
         {
             entity.ToTable("Events");
             entity.HasKey(e => e.Id);

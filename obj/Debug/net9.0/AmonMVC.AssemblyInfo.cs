@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AmonMVC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3ff21c6099cef12d0c185bae7c28d542cdd601b9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f3e3ee57cd12262d848c197d4644b7612ec754b")]
 [assembly: System.Reflection.AssemblyProductAttribute("AmonMVC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AmonMVC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

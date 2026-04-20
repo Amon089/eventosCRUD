@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace amonMVC.Models;
 
-public class Eventos_db
+public class amon_db
 {
     public int Id { get; set; }
 

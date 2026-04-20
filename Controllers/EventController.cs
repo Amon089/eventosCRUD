@@ -55,12 +55,12 @@ public class EventsController : Controller
     [HttpGet]
     public IActionResult Create()
     {
-        return View(new Eventos_db());
+        return View(new amon_db());
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(Eventos_db ev)
+    public async Task<IActionResult> Create(amon_db ev)
     {
         if (!ModelState.IsValid)
             return View(ev);
@@ -82,7 +82,7 @@ public class EventsController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, Eventos_db ev)
+    public async Task<IActionResult> Edit(int id, amon_db ev)
     {
         if (id != ev.Id) return BadRequest();
 
