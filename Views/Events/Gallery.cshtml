@@ -1,0 +1,171 @@
+@model IEnumerable<amonMVC.Models.Eventos_db>
+@{
+    ViewData["Title"] = "Event Board";
+    var categories  = ViewBag.Categories as List<string> ?? new();
+    var activecat   = ViewBag.Category as string;
+    var activeOrder = ViewBag.Order as string;
+}
+
+@if (TempData["Message"] != null)
+{
+    <div id="tempdata-msg" data-msg="@TempData["Message"]" style="display:none"></div>
+}
+
+<!-- HERO -->
+<section class="ef-hero">
+    <h1><i class="material-icons medium">celebration</i> Event Board</h1>
+    <p>Discover the upcoming music, anime and culture festivals</p>
+</section>
+
+<div class="container">
+
+    <!-- FILTERS -->
+    <div class="ef-filters">
+        <form method="get" action="@Url.Action("Gallery")">
+            <div class="row valign-wrapper" style="margin-bottom:0">
+                <div class="col s12 m5 l4">
+                    <div class="input-field" style="margin:0">
+                        <i class="material-icons prefix">filter_list</i>
+                        <select name="category" id="sel-cat" onchange="this.form.submit()">
+                            <option value="">All categories</option>
+                            @foreach (var c in categories)
+                            {
+                                <option value="@c" selected="@(activecat == c ? "selected" : null)">@c</option>
+                            }
+                        </select>
+                        <label for="sel-cat">Category</label>
+                    </div>
+                </div>
+                <div class="col s12 m5 l4">
+                    <div class="input-field" style="margin:0">
+                        <i class="material-icons prefix">sort</i>
+                        <select name="order" id="sel-ord" onchange="this.form.submit()">
+                            <option value="date_asc"  selected="@(activeOrder == "date_asc"  || activeOrder == null ? "selected" : null)">Date ↑</option>
+                            <option value="date_desc" selected="@(activeOrder == "date_desc" ? "selected" : null)">Date ↓</option>
+                            <option value="name"      selected="@(activeOrder == "name"      ? "selected" : null)">Name A–Z</option>
+                        </select>
+                        <label for="sel-ord">Sort by</label>
+                    </div>
+                </div>
+                @if (!string.IsNullOrEmpty(activecat))
+                {
+                    <div class="col s12 m2 l2">
+                        <a href="@Url.Action("Gallery")" class="btn-flat waves-effect">
+                            <i class="material-icons left">clear</i>Clear
+                        </a>
+                    </div>
+                }
+            </div>
+        </form>
+    </div>
+
+    <!-- EVENT GRID -->
+    @if (!Model.Any())
+    {
+        <div class="ef-empty">
+            <i class="material-icons deep-purple-text">event_busy</i>
+            <p class="grey-text text-darken-1">No events available for the selected filters.</p>
+            <a href="@Url.Action("Gallery")" class="btn ef-btn-primary waves-effect waves-light">
+                <i class="material-icons left">refresh</i>View all
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var ev in Model)
+            {
+                <div class="col s12 m6 l4">
+                    <div class="card ef-card hoverable">
+                        <div class="card-image">
+                            @if (!string.IsNullOrEmpty(ev.ImageUrl))
+                            {
+                                <img src="@ev.ImageUrl" alt="@ev.Name" loading="lazy"/>
+                            }
+                            else
+                            {
+                                <div class="ef-no-image">
+                                    <i class="material-icons">image_not_supported</i>
+                                </div>
+                            }
+                            <span class="card-title">@ev.Name</span>
+                        </div>
+                        <div class="card-content">
+                            <span class="ef-chip">@ev.Category</span>
+                            <p>@(ev.Description.Length > 100 ? ev.Description[..100] + "…" : ev.Description)</p>
+                            <p class="ef-date-badge">
+                                <i class="material-icons tiny">event</i>
+                                @ev.Date.ToString("MM/dd/yyyy HH:mm")
+                            </p>
+                            <p class="ef-date-badge">
+                                <i class="material-icons tiny">location_on</i>
+                                @ev.Location
+                            </p>
+                        </div>
+                        <div class="card-action">
+                            <!-- Botón que abre el modal -->
+                            <a href="#modal-@ev.Id"
+                               class="modal-trigger deep-purple-text waves-effect waves-light">
+                                <i class="material-icons tiny">info</i> More info
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODAL de cada evento -->
+                <div id="modal-@ev.Id" class="modal">
+                    <div class="modal-content" style="padding:0">
+
+                        <!-- Imagen del modal -->
+                        @if (!string.IsNullOrEmpty(ev.ImageUrl))
+                        {
+                            <img src="@ev.ImageUrl" alt="@ev.Name"
+                                 style="width:100%; height:220px; object-fit:cover;"/>
+                        }
+                        else
+                        {
+                            <div class="ef-no-image" style="height:180px">
+                                <i class="material-icons">image_not_supported</i>
+                            </div>
+                        }
+
+                        <div style="padding:24px">
+                            <span class="ef-chip" style="margin-bottom:12px">@ev.Category</span>
+                            <h5 style="margin:8px 0 16px; font-weight:700">@ev.Name</h5>
+
+                            <p>@ev.Description</p>
+
+                            <div class="divider" style="margin:16px 0"></div>
+
+                            <p>
+                                <i class="material-icons tiny deep-purple-text">event</i>
+                                <strong>Date:</strong> @ev.Date.ToString("dddd, MMMM dd yyyy")
+                                &nbsp;·&nbsp;
+                                <strong>Time:</strong> @ev.Date.ToString("HH:mm")
+                            </p>
+                            <p>
+                                <i class="material-icons tiny deep-purple-text">location_on</i>
+                                <strong>Location:</strong> @ev.Location
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-close btn-flat waves-effect grey-text">
+                            <i class="material-icons left">close</i>Close
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var modals = document.querySelectorAll('.modal');
+            M.Modal.init(modals, { inDuration: 300, outDuration: 200 });
+        });
+    </script>
+}

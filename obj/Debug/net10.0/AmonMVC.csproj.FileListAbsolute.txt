@@ -1,0 +1,10 @@
+C:\Users\moren\Downloads\GraceMVC\amonMVC\obj\Debug\net10.0\AmonMVC.csproj.AssemblyReference.cache
+C:\Users\moren\Downloads\GraceMVC\amonMVC\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\moren\Downloads\GraceMVC\amonMVC\obj\Debug\net10.0\AmonMVC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\moren\Downloads\GraceMVC\amonMVC\obj\Debug\net10.0\AmonMVC.AssemblyInfoInputs.cache
+C:\Users\moren\Downloads\GraceMVC\amonMVC\obj\Debug\net10.0\AmonMVC.AssemblyInfo.cs
+C:\Users\moren\Downloads\GraceMVC\amonMVC\obj\Debug\net10.0\AmonMVC.csproj.CoreCompileInputs.cache
+C:\Users\moren\Downloads\GraceMVC\amonMVC\obj\Debug\net10.0\AmonMVC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\moren\Downloads\GraceMVC\amonMVC\obj\Debug\net10.0\AmonMVC.RazorAssemblyInfo.cache
+C:\Users\moren\Downloads\GraceMVC\amonMVC\obj\Debug\net10.0\AmonMVC.RazorAssemblyInfo.cs
+C:\Users\moren\Downloads\GraceMVC\amonMVC\obj\Debug\net10.0\AmonMVC.sourcelink.json

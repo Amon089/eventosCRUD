@@ -1,0 +1,320 @@
+/* ── Theme variables ──────────────────────────────── */
+:root {
+  --ef-primary:     #7e57c2; /* Morado base sobrio */
+  --ef-secondary:   #5e35b1; /* Morado más oscuro para acentos */
+  --ef-dark:        #1a1a1a; /* Neutro casi negro */
+  --ef-surface:     #242424; /* Neutro superficie principal */
+  --ef-surface2:    #2d2d2d; /* Neutro superficie secundaria */
+  --ef-card-radius: 8px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #121212; /* Fondo neutro profundo */
+  color: #cfd8dc;
+}
+
+/* ── Navbar ──────────────────────────────────────── */
+.ef-nav {
+  background: var(--ef-dark) !important;
+  border-bottom: 2px solid var(--ef-primary) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+.ef-nav .brand-logo {
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ffffff !important; /* Blanco para mayor sobriedad */
+  text-transform: uppercase;
+}
+.ef-nav ul a {
+  color: #9e9e9e !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: .8rem;
+}
+.ef-nav ul a:hover {
+  color: var(--ef-primary) !important;
+}
+
+/* ── Sidenav ─────────────────────────────────────── */
+.ef-sidenav-header {
+  background: var(--ef-surface);
+  border-bottom: 2px solid var(--ef-primary);
+  padding: 16px;
+}
+.sidenav {
+  background: var(--ef-surface) !important;
+}
+.sidenav a {
+  color: #9e9e9e !important;
+}
+.sidenav a:hover {
+  color: var(--ef-primary) !important;
+  background: rgba(126, 87, 194, 0.1) !important;
+}
+
+/* ── Main wrapper ────────────────────────────────── */
+.ef-main {
+  padding: 24px 0 48px;
+  min-height: calc(100vh - 130px);
+}
+
+/* ── Footer ──────────────────────────────────────── */
+.ef-footer {
+  background: var(--ef-dark);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 0;
+}
+
+/* ── Hero banner ─────────────────────────────────── */
+.ef-hero {
+  background: var(--ef-surface);
+  border-bottom: 2px solid var(--ef-primary);
+  color: #fff;
+  padding: 56px 24px 40px;
+  text-align: center;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.ef-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at center top, rgba(126, 87, 194, 0.15) 0%, transparent 70%);
+}
+.ef-hero h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: #ffffff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+}
+.ef-hero p {
+  font-size: 1rem;
+  opacity: .7;
+  margin: 0;
+  position: relative;
+  letter-spacing: 1px;
+}
+
+/* ── Event cards ─────────────────────────────────── */
+.ef-card {
+  border-radius: var(--ef-card-radius) !important;
+  overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+  background: var(--ef-surface2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+.ef-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  border-color: var(--ef-primary) !important;
+}
+.ef-card .card-image img {
+  height: 210px;
+  object-fit: cover;
+  width: 100%;
+  filter: grayscale(20%) brightness(0.8);
+}
+.ef-card .card-title {
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.ef-card .card-content {
+  padding: 16px;
+  background: var(--ef-surface2);
+}
+.ef-card .card-content p {
+  color: #9e9e9e;
+}
+.ef-card .card-action {
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+  background: var(--ef-surface2) !important;
+}
+.ef-card .card-action a {
+  color: var(--ef-primary) !important;
+  text-transform: uppercase;
+  font-size: .78rem;
+  letter-spacing: 1px;
+}
+
+/* ── Category chip ───────────────────────────────── */
+.ef-chip {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 4px;
+  font-size: .72rem;
+  font-weight: 700;
+  background: rgba(126, 87, 194, 0.1);
+  color: var(--ef-primary);
+  border: 1px solid var(--ef-primary);
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ── Filters bar ─────────────────────────────────── */
+.ef-filters {
+  background: var(--ef-surface);
+  border-radius: var(--ef-card-radius);
+  padding: 16px 24px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.ef-filters label {
+  color: var(--ef-primary) !important;
+}
+.ef-filters .select-wrapper input {
+  color: #e0e0e0 !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ── Admin panel header ──────────────────────────── */
+.ef-admin-header {
+  background: var(--ef-surface);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 4px solid var(--ef-primary);
+  border-radius: var(--ef-card-radius);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.ef-admin-header h4 {
+  margin: 0;
+  font-weight: 700;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ── Admin table ─────────────────────────────────── */
+.ef-table-wrap {
+  background: var(--ef-surface);
+  border-radius: var(--ef-card-radius);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+.ef-table-wrap table thead {
+  background: #1a1a1a;
+  border-bottom: 2px solid var(--ef-primary);
+}
+.ef-table-wrap table thead th {
+  color: var(--ef-primary) !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: .8rem;
+}
+.ef-table-wrap table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
+  color: #bdbdbd;
+}
+.ef-table-wrap table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+.ef-table-wrap table tbody td {
+  color: #bdbdbd;
+}
+
+/* ── Form card ───────────────────────────────────── */
+.ef-form-card {
+  background: var(--ef-surface);
+  border-radius: var(--ef-card-radius);
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.ef-form-card .input-field label {
+  color: #9e9e9e !important;
+}
+.ef-form-card .input-field input,
+.ef-form-card .input-field textarea {
+  color: #e0e0e0 !important;
+  border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+}
+.ef-form-card .input-field input:focus,
+.ef-form-card .input-field textarea:focus {
+  border-bottom-color: var(--ef-primary) !important;
+  box-shadow: 0 1px 0 0 var(--ef-primary) !important;
+}
+.ef-form-card .select-wrapper input {
+  color: #e0e0e0 !important;
+}
+
+/* ── Buttons ─────────────────────────────────────── */
+.btn.ef-btn-primary {
+  background: transparent !important;
+  border: 2px solid var(--ef-primary) !important;
+  color: var(--ef-primary) !important;
+  border-radius: 4px !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.btn.ef-btn-primary:hover {
+  background: var(--ef-primary) !important;
+  color: #ffffff !important;
+}
+.btn.ef-btn-accent {
+  background: var(--ef-secondary) !important;
+  border-radius: 4px !important;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* ── Image placeholder ───────────────────────────── */
+.ef-no-image {
+  height: 210px;
+  background: var(--ef-surface2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ef-no-image i {
+  font-size: 64px;
+  color: rgba(126, 87, 194, 0.2);
+}
+
+/* ── Date badge ──────────────────────────────────── */
+.ef-date-badge { font-size: .78rem; color: #757575; }
+.ef-date-badge i { font-size: .85rem; vertical-align: middle; }
+
+/* ── Empty state ─────────────────────────────────── */
+.ef-empty { text-align: center; padding: 64px 24px; color: #757575; }
+.ef-empty i { font-size: 80px; margin-bottom: 12px; color: rgba(126, 87, 194, 0.2); }
+
+/* ── Modal ───────────────────────────────────────── */
+.modal {
+  background: var(--ef-surface) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: var(--ef-card-radius) !important;
+}
+.modal .modal-footer {
+  background: var(--ef-surface) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+.modal h5 { color: var(--ef-primary) !important; }
+.modal p  { color: #9e9e9e !important; }
+.modal .divider { background: rgba(255, 255, 255, 0.05) !important; }
+
+/* ── Page titles ─────────────────────────────────── */
+h4.deep-purple-text {
+  color: #ffffff !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 600px) {
+  .ef-hero h1 { font-size: 1.6rem; }
+  .ef-admin-header { flex-direction: column; align-items: flex-start; }
+}

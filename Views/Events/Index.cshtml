@@ -1,0 +1,105 @@
+@model IEnumerable<amonMVC.Models.Eventos_db>
+@{
+    ViewData["Title"] = "Event Administration";
+}
+
+@if (TempData["Message"] != null)
+{
+    <div id="tempdata-msg" data-msg="@TempData["Message"]" style="display:none"></div>
+}
+
+<div class="container">
+
+    <!-- ADMIN HEADER -->
+    <div class="ef-admin-header">
+        <h4><i class="material-icons left">manage_accounts</i>Administration Panel</h4>
+        <a href="@Url.Action("Create")" class="btn ef-btn-accent waves-effect waves-light">
+            <i class="material-icons left">add_circle</i>New Event
+        </a>
+    </div>
+
+    <!-- TABLE -->
+    <div class="ef-table-wrap">
+        @if (!Model.Any())
+        {
+            <div class="ef-empty">
+                <i class="material-icons grey-text">inbox</i>
+                <p>No events registered yet.</p>
+            </div>
+        }
+        else
+        {
+            <table class="striped highlight responsive-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ev in Model)
+                    {
+                        <tr>
+                            <td>@ev.Id</td>
+                            <td>
+                                <strong>@ev.Name</strong>
+                                @if (!string.IsNullOrEmpty(ev.ImageUrl))
+                                {
+                                    <br/><small class="grey-text">Has image</small>
+                                }
+                            </td>
+                            <td><span class="ef-chip">@ev.Category</span></td>
+                            <td>@ev.Date.ToString("MM/dd/yyyy")</td>
+                            <td>@ev.Location</td>
+                            <td>
+                                @if (ev.Active)
+                                {
+                                    <span class="green-text"><i class="material-icons tiny">check_circle</i> Active</span>
+                                }
+                                else
+                                {
+                                    <span class="red-text"><i class="material-icons tiny">cancel</i> Inactive</span>
+                                }
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", new { id = ev.Id })"
+                                   class="btn-floating btn-small waves-effect blue tooltipped"
+                                   data-tooltip="Edit" data-position="top">
+                                    <i class="material-icons">edit</i>
+                                </a>
+
+                                @if (ev.Active)
+                                {
+                                    <form method="post" action="@Url.Action("Delete", new { id = ev.Id })" style="display:inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit"
+                                                class="btn-floating btn-small waves-effect orange tooltipped"
+                                                data-tooltip="Deactivate" data-position="top"
+                                                onclick="return confirm('Deactivate event «@ev.Name»?')">
+                                            <i class="material-icons">visibility_off</i>
+                                        </button>
+                                    </form>
+                                }
+
+                                <form method="post" action="@Url.Action("DeletePermanent", new { id = ev.Id })" style="display:inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit"
+                                            class="btn-floating btn-small waves-effect red tooltipped"
+                                            data-tooltip="Delete permanently" data-position="top"
+                                            onclick="return confirm('⚠️ Permanently delete «@ev.Name»? This cannot be undone.')">
+                                        <i class="material-icons">delete_forever</i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

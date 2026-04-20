@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — AmonMVC</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="ef-nav">
+        <div class="nav-wrapper container">
+            <a href="@Url.Action("Gallery","Events")" class="brand-logo">
+                <i class="material-icons left">festival</i>AmonMVC
+            </a>
+            <a href="#" data-target="mobile-menu" class="sidenav-trigger">
+                <i class="material-icons">menu</i>
+            </a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="@Url.Action("Gallery","Events")"><i class="material-icons left">event</i>Event Board</a></li>
+                <li><a href="@Url.Action("Index","Events")"><i class="material-icons left">admin_panel_settings</i>Administration</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- SIDENAV MOBILE -->
+    <ul class="sidenav" id="mobile-menu">
+        <li><div class="user-view ef-sidenav-header">
+            <span class="name white-text">AmonMVC</span>
+            <span class="email white-text">Management Panel</span>
+        </div></li>
+        <li><a href="@Url.Action("Gallery","Events")"><i class="material-icons">event</i>Event Board</a></li>
+        <li><a href="@Url.Action("Index","Events")"><i class="material-icons">admin_panel_settings</i>Administration</a></li>
+    </ul>
+
+    <!-- MAIN CONTENT -->
+    <main class="ef-main">
+        @RenderBody()
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="ef-footer">
+        <div class="container center-align">
+            <p class="white-text">© @DateTime.Now.Year — AmonMVC · Built with <i class="material-icons tiny red-text">favorite</i> and .NET 9</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            M.AutoInit();
+            var elems = document.querySelectorAll('select');
+            M.FormSelect.init(elems);
+            var dp = document.querySelectorAll('.datepicker');
+            M.Datepicker.init(dp, { format: 'yyyy-mm-dd' });
+            var tp = document.querySelectorAll('.timepicker');
+            M.Timepicker.init(tp, { twelveHour: false });
+            var msg = document.getElementById('tempdata-msg');
+            if (msg) M.toast({ html: msg.dataset.msg, classes: 'teal darken-2 rounded' });
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

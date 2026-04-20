@@ -1,0 +1,9 @@
+@model amonMVC.Models.Eventos_db
+@{ ViewData["Title"] = $"Edit: {Model.Name}"; }
+
+<div class="container" style="max-width:860px">
+    <h4 class="deep-purple-text" style="margin:24px 0 20px">
+        <i class="material-icons left">edit</i>Edit Event
+    </h4>
+    <partial name="_FormEvent" model="Model"/>
+</div>

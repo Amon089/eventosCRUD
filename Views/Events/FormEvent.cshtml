@@ -1,0 +1,97 @@
+@model amonMVC.Models.Eventos_db
+
+<div class="ef-form-card">
+    <form asp-action="@(Model.Id == 0 ? "Create" : "Edit")" method="post">
+        @Html.AntiForgeryToken()
+
+        @if (Model.Id != 0)
+        {
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreatedAt" />
+        }
+
+        <div class="row">
+            <!-- Name -->
+            <div class="input-field col s12 m8">
+                <i class="material-icons prefix">label</i>
+                <input asp-for="Name" id="name" type="text" class="validate"/>
+                <label asp-for="Name" for="name"></label>
+                <span asp-validation-for="Name" class="red-text helper-text"></span>
+            </div>
+
+            <!-- Category -->
+            <div class="input-field col s12 m4">
+                <i class="material-icons prefix">category</i>
+                <select asp-for="Category" id="category">
+                    <option value="General">General</option>
+                    <option value="Music">Music</option>
+                    <option value="Anime">Anime</option>
+                    <option value="Electronic">Electronic</option>
+                    <option value="Cultural">Cultural</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Cosplay">Cosplay</option>
+                </select>
+                <label asp-for="Category">Category</label>
+                <span asp-validation-for="Category" class="red-text helper-text"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="input-field col s12">
+                <i class="material-icons prefix">description</i>
+                <textarea asp-for="Description" id="description" class="materialize-textarea validate"></textarea>
+                <label asp-for="Description" for="description"></label>
+                <span asp-validation-for="Description" class="red-text helper-text"></span>
+            </div>
+
+            <!-- Date -->
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">event</i>
+                <input asp-for="Date" id="date" type="text"
+                       value="@Model.Date.ToString("yyyy-MM-dd HH:mm")"
+                       class="validate"/>
+                <label asp-for="Date" for="date" class="active"></label>
+                <span asp-validation-for="Date" class="red-text helper-text"></span>
+                <span class="helper-text">Format: YYYY-MM-DD HH:mm</span>
+            </div>
+
+            <!-- Location -->
+            <div class="input-field col s12 m6">
+                <i class="material-icons prefix">location_on</i>
+                <input asp-for="Location" id="location" type="text" class="validate"/>
+                <label asp-for="Location" for="location"></label>
+                <span asp-validation-for="Location" class="red-text helper-text"></span>
+            </div>
+
+            <!-- Image URL -->
+            <div class="input-field col s12">
+                <i class="material-icons prefix">image</i>
+                <input asp-for="ImageUrl" id="imageUrl" type="url"/>
+                <label asp-for="ImageUrl" for="imageUrl"></label>
+                <span asp-validation-for="ImageUrl" class="red-text helper-text"></span>
+                <span class="helper-text">Public URL of the poster image (optional)</span>
+            </div>
+
+            @if (Model.Id != 0)
+            {
+                <div class="input-field col s12">
+                    <label>
+                        <input asp-for="Active" type="checkbox" class="filled-in"/>
+                        <span>Event active (visible on the board)</span>
+                    </label>
+                </div>
+            }
+        </div>
+
+        <div class="row" style="margin-bottom:0">
+            <div class="col s12" style="display:flex;gap:12px;flex-wrap:wrap">
+                <button type="submit" class="btn ef-btn-primary waves-effect waves-light">
+                    <i class="material-icons left">save</i>
+                    @(Model.Id == 0 ? "Create Event" : "Save Changes")
+                </button>
+                <a href="@Url.Action("Index")" class="btn-flat waves-effect">
+                    <i class="material-icons left">arrow_back</i>Cancel
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
