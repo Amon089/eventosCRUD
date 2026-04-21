@@ -25,4 +25,4 @@ COPY --from=build /out .
 EXPOSE 8083
 
 # Comando de inicio
-ENTRYPOINT ["dotnet", "AmonMVC.dll"]
+ENTRYPOINT ["dotnet", "amonMVC.dll"]
